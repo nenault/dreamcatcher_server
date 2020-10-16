@@ -1,7 +1,7 @@
 var express = require("express");
 var router = express.Router();
-const uploader = require("../config/cloudinary");
 const Dream = require("../models/Dream");
+const Concept = require ("../models/Concept")
 
 router.get("/", async (req, res, next) => {
   try {
@@ -21,12 +21,9 @@ router.get("/:id", async (req, res, next) => {
   }
 });
 
-router.post("/", uploader.single("image"), async (req, res, next) => {
+router.post("/", async (req, res, next) => {
   try {
     const newDream = req.body;
-    if (req.file) {
-      newDream.image = req.file.path;
-    }
     const apiRes = await Dream.create(newDream);
     res.status(201).json(apiRes);
   } catch (err) {
@@ -34,12 +31,9 @@ router.post("/", uploader.single("image"), async (req, res, next) => {
   }
 });
 
-router.patch("/:id", uploader.single("image"), async (req, res, next) => {
+router.patch("/:id", async (req, res, next) => {
   try {
     const updatedDream = req.body;
-    if (req.file) {
-      updatedDream.image = req.file.path;
-    }
     const apiRes = await Dream.findByIdAndUpdate(req.params.id, updatedDream, {
       new: true,
     });

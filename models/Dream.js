@@ -3,10 +3,13 @@ const Schema = mongoose.Schema;
 
 const dreamSchema = new Schema({
   name: String,
-  concepts: {
-    type: Schema.Types.ObjectId,
-    ref: "Concept",
-  },
+  concepts: [{
+    type: {
+      type: Schema.Types.ObjectId,
+      ref: "Concept",
+    },
+    value: String,
+  }],
   user: {
     type: Schema.Types.ObjectId,
     ref: "User",
