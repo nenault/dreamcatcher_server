@@ -3,6 +3,7 @@ const Schema = mongoose.Schema;
 
 const dreamSchema = new Schema({
   name: String,
+  feel: String,
   concepts: [
     {
       type: {
