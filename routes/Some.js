@@ -1,11 +1,10 @@
 var express = require("express");
 var router = express.Router();
-const Dream = require("../models/Dream");
-const Concept = require("../models/Concept");
+const Some = require("../models/Some");
 
 router.get("/", async (req, res, next) => {
   try {
-    const apiRes = await Dream.find({
+    const apiRes = await Some.find({
       user: { $in: [req.session.currentUser] },
     });
     res.status(200).json(apiRes);
@@ -16,7 +15,7 @@ router.get("/", async (req, res, next) => {
 
 router.get("/:id", async (req, res, next) => {
   try {
-    const apiRes = await Dream.findById(req.params.id);
+    const apiRes = await Some.findById(req.params.id);
     res.status(200).json(apiRes);
   } catch (err) {
     res.status(500).json(err);
@@ -25,18 +24,20 @@ router.get("/:id", async (req, res, next) => {
 
 router.post("/", async (req, res, next) => {
   try {
-    const newDream = req.body;
-    const apiRes = await Dream.create(newDream);
+    console.log(req.body);
+    const newSome = req.body;
+    const apiRes = await Some.create(newSome);
     res.status(201).json(apiRes);
   } catch (err) {
+   // console.log(err);
     res.status(500).json(err);
   }
 });
 
 router.patch("/:id", async (req, res, next) => {
   try {
-    const updatedDream = req.body;
-    const apiRes = await Dream.findByIdAndUpdate(req.params.id, updatedDream, {
+    const updatedSome = req.body;
+    const apiRes = await Some.findByIdAndUpdate(req.params.id, updatedSome, {
       new: true,
     });
     res.status(200).json(apiRes);
@@ -47,7 +48,7 @@ router.patch("/:id", async (req, res, next) => {
 
 router.delete("/:id", async (req, res, next) => {
   try {
-    const apiRes = await Dream.findByIdAndDelete(req.params.id);
+    const apiRes = await Some.findByIdAndDelete(req.params.id);
     res.status(204).json(apiRes);
   } catch (err) {
     res.status(500).json(err);

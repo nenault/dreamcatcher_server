@@ -3,13 +3,18 @@ const Schema = mongoose.Schema;
 
 const dreamSchema = new Schema({
   name: String,
-  concepts: [{
-    type: {
-      type: Schema.Types.ObjectId,
-      ref: "Concept",
+  concepts: [
+    {
+      type: {
+        type: Schema.Types.ObjectId,
+        ref: "Concept",
+      },
+      some: {
+        type: Schema.Types.ObjectId,
+        ref: "Some",
+      },
     },
-    value: String,
-  }],
+  ],
   user: {
     type: Schema.Types.ObjectId,
     ref: "User",
