@@ -13,6 +13,7 @@ const dreamSchema = new Schema({
         type: Schema.Types.ObjectId,
         ref: "Some",
       },
+      feeling: String,
     },
   ],
   user: {
