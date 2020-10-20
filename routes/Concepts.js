@@ -36,9 +36,10 @@ router.post("/", uploader.single("image"), async (req, res, next) => {
 
 router.patch("/:id", uploader.single("image"), async (req, res, next) => {
   try {
+    console.log();
     const updatedConcept = req.body;
     if (req.file) {
-      updated.image = req.file.path;
+      updatedConcept.image = req.file.path;
     }
     const apiRes = await Concept.findByIdAndUpdate(
       req.params.id,
