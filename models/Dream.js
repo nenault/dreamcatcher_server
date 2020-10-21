@@ -22,6 +22,10 @@ const dreamSchema = new Schema({
     type: Schema.Types.ObjectId,
     ref: "User",
   },
+  isProtected:{
+    type: Boolean,
+    default: true,
+  }
 });
 
 const Dream = mongoose.model("Dream", dreamSchema);
