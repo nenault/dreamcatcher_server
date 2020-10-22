@@ -35,14 +35,12 @@ router.post("/", async (req, res, next) => {
 
 router.patch("/:id", async (req, res, next) => {
   try {
-    console.log(req.body);
     const updatedDream = req.body;
     const apiRes = await Dream.findByIdAndUpdate(req.params.id, updatedDream, {
       new: true,
     });
     res.status(200).json(apiRes);
   } catch (err) {
-    console.log(err);
     res.status(500).json(err);
   }
 });
